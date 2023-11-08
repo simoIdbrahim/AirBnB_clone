@@ -11,7 +11,8 @@ class FileStorage:
 	def all(self):
         return self.__objects
 	new(self, obj):
-		pass
+		key = f"{obj.__class__.__name__}.{obj.id}"
+        self.__objects[key] = obj
 	save(self):
 		pass
 	reload(self):
