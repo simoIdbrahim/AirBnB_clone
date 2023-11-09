@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """
+File storage This module manages the load and the dump
+of objects to and from JSON files.
 """
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -63,7 +65,7 @@ class FileStorage:
 
                     data_jsonfile = json.load(file_data)
                     for key, value in data_jsonfile.items():
-                        
+
                         if '.' in key:
                             class_name, obj_id = key.split('.')
                             class_obj = globals()[class_name]
