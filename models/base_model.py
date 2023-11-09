@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-
 """Defines the BaseModel class."""
 import uuid
 import datetime
 import models
+
 
 class BaseModel:
     """the base model class."""
@@ -37,7 +37,7 @@ class BaseModel:
 
     def save(self):
         """ updates the public instance attribute and the current datetime """
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.datetime.today()
         models.storage.save()
 
     def to_dict(self):
@@ -56,3 +56,4 @@ class BaseModel:
                 this_result[key] = val
 
         return this_result
+
