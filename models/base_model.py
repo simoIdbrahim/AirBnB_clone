@@ -50,7 +50,7 @@ class BaseModel:
         this_dict["__class__"] = self.__class__.__name__
 
         for key, val in this_dict.items():
-            if type(val) == datetime:
+            if isinstance(val, datetime.datetime):
                 this_result[key] = val.isoformat()
             else:
                 this_result[key] = val
