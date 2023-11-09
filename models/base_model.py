@@ -3,10 +3,10 @@
 """Defines the BaseModel class."""
 import uuid
 import datetime
-
+import models
 
 class BaseModel:
-    """Represents the BaseModel of the HBnB project."""
+    """the base model class."""
 
     def __init__(self, *args, **kwargs):
         """BaseModel constructor
@@ -29,6 +29,7 @@ class BaseModel:
                         val, time_format)
                 else:
                     self.__dict__[key] = val
+        models.storage.new(self)
 
     def __str__(self):
         """ return the name of class and the id and the __dict__ """
@@ -36,7 +37,8 @@ class BaseModel:
 
     def save(self):
         """ updates the public instance attribute and the current datetime """
-        self.updated_at = datetime.datetime.today()
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """ returns a dictionary containing all
@@ -48,7 +50,7 @@ class BaseModel:
         this_dict["__class__"] = self.__class__.__name__
 
         for key, val in this_dict.items():
-            if type(val) == datetime:
+            if isinstance(val, datetime.datetime):
                 this_result[key] = val.isoformat()
             else:
                 this_result[key] = val
