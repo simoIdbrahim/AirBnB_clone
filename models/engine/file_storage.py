@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 File storage This module manages the load and the dump
-of objects to and from JSON files.
+of objects to and from JSON files serialization and desariali...
 """
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -57,7 +57,6 @@ class FileStorage:
         """
         Deserializes load data from filr json.
         """
-
         if os.path.exists(self.__file_path):
 
             try:
