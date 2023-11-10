@@ -12,6 +12,30 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     validate_classes = ['BaseModel']
 
+    def cmd_default(self, val):
+        """ default state for the cmd """
+
+        val_list = val.split('.')
+
+        class_name = val_list[0]
+
+        the_commend = val_list[1].split('(')
+
+        the_method = the_commend[0]
+
+        dict = {
+            'update': self.do_update,
+            'destroy': self.do_destroy,
+            'all': self.do_all,
+            'show': self.do_show,
+        }
+
+        if the_method in dict.keys():
+            return dict[the_method]('{} {}'.format(class_name, ''))
+
+        print('*** error syntax: {} ***'.format(val))
+        return False
+
     def emptyline(self):
         """ do nothing """
         pass
@@ -93,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, val):
         """
-        displays all str representation of all instances
+        displays all str representation of all instances 
         based or not on the class name
         """
         objs = storage.all()
@@ -110,9 +134,9 @@ class HBNBCommand(cmd.Cmd):
                 if k.split('.')[0] == the_commend[0]:
                     print(str(v))
 
-    def update(self, val):
+    def do_update(self, val):
         """
-        updates an instance based on the class name and
+        updates an instance based on the class name and 
         id by adding or updating attribute and save the
         change in jsin file.
         """
@@ -153,4 +177,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
