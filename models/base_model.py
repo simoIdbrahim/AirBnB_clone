@@ -56,4 +56,3 @@ class BaseModel:
                 this_result[key] = val
 
         return this_result
-
