@@ -9,10 +9,10 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """ defines the HolbertonBnB command """
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
     validate_classes = ['BaseModel']
 
-    def cmd_default(self, val):
+    def default(self, val):
         """ default state for the cmd """
 
         val_list = val.split('.')
@@ -44,11 +44,6 @@ class HBNBCommand(cmd.Cmd):
         """ return True to exit the program """
 
         return True
-
-    def do_help(self, val):
-        """ this action is provided by default by cmd """
-
-        print('Quit command to exit the program')
 
     def do_EOF(self, val):
         """ return True to exit the program """
@@ -117,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, val):
         """
-        displays all str representation of all instances
+        displays all str representation of all instances 
         based or not on the class name
         """
         objs = storage.all()
@@ -136,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, val):
         """
-        updates an instance based on the class name and
+        updates an instance based on the class name and 
         id by adding or updating attribute and save the
         change in jsin file.
         """
