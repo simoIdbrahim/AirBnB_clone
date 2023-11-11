@@ -33,7 +33,8 @@ class BaseModel:
 
     def __str__(self):
         """ return the name of class and the id and the __dict__ """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """ updates the public instance attribute and the current datetime """
