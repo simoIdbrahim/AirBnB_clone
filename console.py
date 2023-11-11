@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, val):
         """
-        displays all str representation of all instances 
+        displays all str representation of all instances
         based or not on the class name
         """
         objs = storage.all()
@@ -131,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, val):
         """
-        updates an instance based on the class name and 
+        updates an instance based on the class name and
         id by adding or updating attribute and save the
         change in jsin file.
         """
