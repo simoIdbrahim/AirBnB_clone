@@ -27,7 +27,6 @@ class HBNBCommand(cmd.Cmd):
             'update': self.do_update,
             'destroy': self.do_destroy,
             'all': self.do_all,
-            "count": self.do_count,
             'show': self.do_show,
             'count': self.do_count
         }
@@ -37,6 +36,30 @@ class HBNBCommand(cmd.Cmd):
 
         print('*** error syntax: {} ***'.format(val))
         return False
+
+    def do_count(self, val):
+        """ count class retrieve the number
+        of instances of a class
+
+        """
+        objs = storage.all()
+
+        the_commend = shlex.split(val)
+
+        new_class = the_commend[0]
+
+        c = 0
+
+        if the_commend:
+            if new_class in self.validate_classes:
+                for obj in objs.values():
+                    if obj.__class__.__name__ == new_class:
+                        c += 1
+                print(c)
+            else:
+                print('** unknown class name **')
+        else:
+            print('** class name missing **')
 
     def emptyline(self):
         """ do nothing """
@@ -170,30 +193,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, name, value)
 
                 obj.save()
-
-    def do_count(self, val):
-        """ count class retrieve the number
-        of instances of a class
-
-        """
-        objs = storage.all()
-
-        the_commend = shlex.split(val)
-
-        new_class = the_commend[0]
-
-        c = 0
-
-        if the_commend:
-            if new_class in self.validate_classes:
-                for obj in objs.values():
-                    if obj.__class__.__name__ == new_class:
-                        c += 1
-                print(c)
-            else:
-                print('** unknown class name **')
-        else:
-            print('** class name missing **')
 
 
 if __name__ == '__main__':
