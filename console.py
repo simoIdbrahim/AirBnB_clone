@@ -28,6 +28,7 @@ class HBNBCommand(cmd.Cmd):
             'destroy': self.do_destroy,
             'all': self.do_all,
             'show': self.do_show,
+            'count': self.do_count
         }
 
         if the_method in dict.keys():
@@ -112,7 +113,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, val):
         """
-        displays all str representation of all instances 
+        displays all str representation of all instances
         based or not on the class name
         """
         objs = storage.all()
@@ -131,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, val):
         """
-        updates an instance based on the class name and 
+        updates an instance based on the class name and
         id by adding or updating attribute and save the
         change in jsin file.
         """
@@ -168,6 +169,30 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, name, value)
 
                 obj.save()
+
+    def do_count(self, val):
+        """ count class retrieve the number
+        of instances of a class
+
+        """
+        objs = storage.all()
+
+        the_commend = shlex.split(val)
+
+        new_class = the_commend[0]
+
+        c = 0
+
+        if the_commend:
+            if new_class in self.validate_classes:
+                for obj in objs.values():
+                    if obj.__class__.__name__ == new_class:
+                        c += 1
+                print(c)
+            else:
+                print('** unknown class name **')
+        else:
+            print('** class name missing **')
 
 
 if __name__ == '__main__':
